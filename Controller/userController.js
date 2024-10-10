@@ -1,6 +1,7 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { MongoClient } = require('mongodb');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { MongoClient } from 'mongodb';
+
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri);
 

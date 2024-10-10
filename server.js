@@ -3,11 +3,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import userController from './controllers/userController.js';
-import adminController from './controllers/adminController.js';
+import { registerUser, loginUser, uploadAssignment, allAdmins } from './Controller/userController.js';
+import { registerAdmin, loginAdmin, viewAssignments, acceptAssignment, rejectAssignment } from './Controller/adminController.js';
 import Authentication from './Middleware/authentication.js';
-dotenv.config();
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 8080;
 
@@ -17,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 /* MongoDB client setup */
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -38,17 +38,17 @@ async function connectDB() {
 }
 
 /* User Routes */
-app.post('/user/register', userController.registerUser);
-app.post('/user/login', userController.loginUser);
-app.post('/user/upload', Authentication, userController.uploadAssignment); //Protected route
-app.get('/user/admins', Authentication, userController.allAdmins); //Protected route
+app.post('/user/register', registerUser);
+app.post('/user/login', loginUser);
+app.post('/user/upload', Authentication, uploadAssignment); //Protected route
+app.get('/user/admins', Authentication, allAdmins); //Protected route
 
 /* Admin Routes */
-app.post('/admin/register', adminController.registerAdmin);
-app.post('/admin/login', adminController.loginAdmin);
-app.get('/admin/assignments', Authentication, adminController.viewAssignments); //Protected route
-app.post('/admin/assignments/:id/accept', Authentication, adminController.acceptAssignment); //Protected route
-app.post('/admin/assignments/:id/reject', Authentication, adminController.rejectAssignment); //Protected route
+app.post('/admin/register', registerAdmin);
+app.post('/admin/login', loginAdmin);
+app.get('/admin/assignments', Authentication, viewAssignments); //Protected route
+app.post('/admin/assignments/:id/accept', Authentication, acceptAssignment); //Protected route
+app.post('/admin/assignments/:id/reject', Authentication, rejectAssignment); //Protected route
 
 /* Connecting to Database */
 connectDB().then(() => {

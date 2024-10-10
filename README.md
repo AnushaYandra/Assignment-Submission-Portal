@@ -23,4 +23,4 @@ Develop a backend system for an assignment submission portal that allows users t
 4. In total, I created three collections: Users, Admins, and Assignments. The Users collection stores data for registered users, the Admins collection contains information for registered admins, and the Assignments collection holds the data for uploaded assignments.
 
 5. Assignments can be filtered by their status, showing only those that have been accepted and omitting those that have been rejected.
-# Assignment-Submission-Portal
+
