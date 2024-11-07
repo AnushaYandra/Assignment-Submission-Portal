@@ -12,7 +12,16 @@ Develop a backend system for an assignment submission portal that allows users t
 5. Create a .env file with MongoDB URI and JWT secret.
 6. Start the server to run the application.
 
+## Features
 
+- User and Admin authentication
+- Assignment upload functionality
+- Assignment review system (accept/reject)
+- MongoDB integration
+- JWT-based authentication
+- Express professional routing 
+- Bcrypt for password hashing in database
+  
 ## Explanation :
 1. I began by creating a server.js file, which serves as the entry point for the application. I installed all necessary dependencies and configured the MongoDB connection using the MongoClient to establish a connection with the database.
 
